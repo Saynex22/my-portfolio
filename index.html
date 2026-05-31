@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Touila Abdelkarim — Portfolio BUT Informatique</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0e0e0e;
+    --white: #f9f8f6;
+    --gray-100: #f0eeeb;
+    --gray-200: #dddbd7;
+    --gray-400: #9b9894;
+    --gray-600: #5c5a57;
+    --accent: #1a1a1a;
+    --border: 1px solid var(--gray-200);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(249,248,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-logo {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--gray-600);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-links .nav-active {
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  .nav-cta {
+    font-size: 12px !important;
+    background: var(--black) !important;
+    color: var(--white) !important;
+    padding: 6px 14px;
+    border-radius: 5px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: #333 !important; }
+
+  /* SECTIONS */
+  section {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    border-bottom: var(--border);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  /* HERO */
+  #hero {
+    padding-top: 10rem;
+    padding-bottom: 6rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 span { font-weight: 500; }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--gray-600);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.18s;
+    letter-spacing: 0.02em;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    border: 1px solid var(--black);
+  }
+
+  .btn-primary:hover { background: #333; border-color: #333; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--black);
+    border: var(--border);
+  }
+
+  .btn-outline:hover { background: var(--gray-100); }
+
+  /* SECTION TITLE */
+  h2 {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 2.5rem;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+  }
+
+  p { color: var(--gray-600); margin-bottom: 1rem; font-weight: 300; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ABOUT GRID */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 1.5rem;
+    border: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .about-cell {
+    padding: 1.25rem 1.5rem;
+    background: var(--gray-100);
+    border-right: var(--border);
+    border-bottom: var(--border);
+  }
+
+  .about-cell:nth-child(even) { border-right: none; }
+  .about-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+  .about-label {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .about-val {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  /* SKILLS FILTER BAR */
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+    border: var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover { background: var(--gray-100); color: var(--black); }
+
+  .filter-btn.active {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+  }
+
+  .filter-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  /* COMPETENCE MINI CARDS (homepage) */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .comp-mini {
+    border: var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .comp-mini::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--black);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .comp-mini:hover::before { transform: scaleX(1); }
+  .comp-mini:hover { border-color: var(--gray-400); background: var(--gray-100); }
+
+  .comp-mini-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .comp-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: var(--border);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--gray-400);
+    background: var(--white);
+  }
+
+  .comp-mini-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--black);
+    line-height: 1.3;
+  }
+
+  .comp-mini-sub {
+    font-size: 11px;
+    color: var(--gray-400);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 0.6rem;
+  }
+
+  .comp-mini-desc {
+    font-size: 12px;
+    color: var(--gray-600);
+    font-weight: 300;
+    line-height: 1.55;
+    margin-bottom: 0.75rem;
+  }
+
+  .comp-mini-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .mini-badge {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    background: var(--gray-100);
+    border: var(--border);
+    border-radius: 3px;
+    padding: 2px 7px;
+    color: var(--gray-600);
+  }
+
+  .comp-mini-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: var(--border);
+  }
+
+  .comp-mini-link {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--gray-400);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .comp-mini-arrow {
+    font-size: 12px;
+    color: var(--gray-400);
+    transition: transform 0.15s;
+  }
+
+  .comp-mini:hover .comp-mini-arrow { transform: translateX(3px); }
+
+  /* hidden by filter */
+  .comp-mini.hidden {
+    display: none;
+  }
+
+  /* DIPLOMES */
+  .diploma-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: var(--border);
+  }
+
+  .diploma-row:first-of-type { border-top: var(--border); }
+
+  .diploma-name { font-size: 15px; font-weight: 500; }
+
+  .diploma-year {
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    color: var(--gray-400);
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 1.25rem;
+    border: var(--border);
+    border-radius: 10px;
+    transition: background 0.15s;
+  }
+
+  .contact-item:hover { background: var(--gray-100); }
+
+  .contact-label {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+  }
+
+  .contact-val {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+    word-break: break-all;
+    text-decoration: none;
+  }
+
+  .contact-val:hover { color: var(--gray-600); }
+
+  /* SKILLS PAGE TEASER */
+  .comp-teaser-cta {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border: var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: var(--gray-100);
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .comp-teaser-cta:hover {
+    background: #e8e6e3;
+    border-color: var(--gray-400);
+  }
+
+  .comp-teaser-text h4 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 2px;
+  }
+
+  .comp-teaser-text p {
+    font-size: 13px;
+    color: var(--gray-400);
+    margin: 0;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+
+  .comp-teaser-arrow {
+    font-size: 20px;
+    color: var(--gray-400);
+    transition: transform 0.15s;
+  }
+
+  .comp-teaser-cta:hover .comp-teaser-arrow { transform: translateX(4px); }
+
+  /* STATS ROW */
+  .stats-row {
+    display: flex;
+    gap: 2px;
+    margin-top: 2rem;
+    border: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .stat-cell {
+    flex: 1;
+    padding: 1.25rem;
+    background: var(--gray-100);
+    border-right: var(--border);
+    text-align: center;
+  }
+
+  .stat-cell:last-child { border-right: none; }
+
+  .stat-num {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    display: block;
+    counter-reset: num;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    color: var(--gray-400);
+    border-top: var(--border);
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 640px) {
+    .about-grid, .contact-grid, .comp-grid { grid-template-columns: 1fr; }
+    .about-cell:nth-child(even) { border-right: none; }
+    .about-cell { border-right: none; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.25rem; }
+    .stats-row { flex-wrap: wrap; }
+    .stat-cell { border-right: none; border-bottom: var(--border); }
+    .stat-cell:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="index.html" class="nav-logo">Touila Abdelkarim</a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#diplomes">Formation</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="competences.html" class="nav-cta">Voir tout →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="tag">BUT Informatique — IUT de Lannion — 2025/2026</span>
+  <h1>Touila<br><span>Abdelkarim</span></h1>
+  <p class="hero-desc">
+    Étudiant en 1ère année de BUT Informatique à l'IUT de Lannion.<br>
+    Passionné par le développement web, je recherche une alternance / un stage dans le domaine du développement logiciel ou des systèmes informatiques.
+  </p>
+  <div class="btn-group">
+    <a href="#competences" class="btn btn-primary">Voir mes compétences</a>
+    <a href="CV_Touila_Abdelkarim.pdf" download class="btn btn-outline">Télécharger mon CV (PDF)</a>
+    <a href="#contact" class="btn btn-outline">Me contacter</a>
+  </div>
+
+  <div class="stats-row" style="margin-top:3rem;">
+    <div class="stat-cell">
+      <span class="stat-num" data-target="6">0</span>
+      <span class="stat-label">Compétences BUT</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" data-target="5">0</span>
+      <span class="stat-label">Projets SAÉ</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" data-target="3">0</span>
+      <span class="stat-label">Langages maîtrisés</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" data-target="1">0</span>
+      <span class="stat-label">Année d'études</span>
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="about" class="reveal">
+  <h2>À propos</h2>
+  <h3>Qui suis-je ?</h3>
+  <p>
+    Passionné par la programmation et le développement d'applications, j'ai choisi le BUT Informatique pour transformer cette passion en véritable expertise. Curieux et motivé, j'aime comprendre comment les choses fonctionnent et relever de nouveaux défis techniques. En dehors des études, je pratique régulièrement la musculation — une discipline qui m'apprend la rigueur et le dépassement de soi.
+  </p>
+
+  <div class="about-grid">
+    <div class="about-cell">
+      <span class="about-label">Formation actuelle</span>
+      <span class="about-val">BUT Informatique — 1ère année</span>
+    </div>
+    <div class="about-cell">
+      <span class="about-label">Établissement</span>
+      <span class="about-val"><a href="https://iut-lannion.univ-rennes.fr" target="_blank" style="color:inherit;">IUT de Lannion</a></span>
+    </div>
+    <div class="about-cell">
+      <span class="about-label">Objectif</span>
+      <span class="about-val">Alternance / Stage</span>
+    </div>
+    <div class="about-cell">
+      <span class="about-label">Disponibilité</span>
+      <span class="about-val">Septembre 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section id="diplomes" class="reveal">
+  <h2>Formation & Diplômes</h2>
+  <h3>Parcours académique</h3>
+
+  <div class="diploma-row">
+    <div>
+      <div class="diploma-name">BUT Informatique</div>
+      <div style="font-size:13px;color:var(--gray-400);margin-top:2px;">IUT de Lannion — <a href="https://iut-lannion.univ-rennes.fr/informatique/" target="_blank" style="color:inherit;">Programme BUT Info ↗</a></div>
+    </div>
+    <span class="diploma-year">2025 → 2028</span>
+  </div>
+
+  <div class="diploma-row">
+    <div>
+      <div class="diploma-name">Baccalauréat Général</div>
+      <div style="font-size:13px;color:var(--gray-400);margin-top:2px;">Spécialités NSI &amp; Mathématiques</div>
+    </div>
+    <span class="diploma-year">2025</span>
+  </div>
+
+  <br>
+  <p style="font-size:13px;">
+    Programme officiel du BUT Informatique :
+    <a href="https://www.enseignementsup-recherche.gouv.fr/sites/default/files/annexe-2-licence-professionnelle-bachelor-universitaire-de-technologie-informatique-29016.pdf" target="_blank" style="color:var(--black);">Référentiel national ↗</a>
+  </p>
+</section>
+
+<!-- COMPÉTENCES (aperçu) -->
+<section id="competences" class="reveal">
+  <h2>Les 6 Compétences BUT Informatique</h2>
+  <h3>Aperçu rapide</h3>
+  <p style="margin-bottom:1.5rem;">Chaque compétence est illustrée par un projet concret. Filtrez par domaine ou cliquez sur une carte pour découvrir les détails, preuves et dépôts GitHub.</p>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">
+      <span class="filter-dot"></span> Tout
+    </button>
+    <button class="filter-btn" data-filter="dev">
+      <span class="filter-dot"></span> Développement
+    </button>
+    <button class="filter-btn" data-filter="algo">
+      <span class="filter-dot"></span> Algorithmique
+    </button>
+    <button class="filter-btn" data-filter="reseau">
+      <span class="filter-dot"></span> Réseaux
+    </button>
+    <button class="filter-btn" data-filter="data">
+      <span class="filter-dot"></span> Données
+    </button>
+    <button class="filter-btn" data-filter="projet">
+      <span class="filter-dot"></span> Projet
+    </button>
+    <button class="filter-btn" data-filter="collab">
+      <span class="filter-dot"></span> Collaboration
+    </button>
+  </div>
+
+  <!-- GRID -->
+  <div class="comp-grid" id="compGrid">
+
+    <a href="competences.html#c1" class="comp-mini" data-cat="dev">
+      <div class="comp-mini-header">
+        <div class="comp-num">C1</div>
+        <div class="comp-mini-title">Réaliser un développement d'application</div>
+      </div>
+      <div class="comp-mini-sub">Développement logiciel & programmation</div>
+      <div class="comp-mini-desc">Jeu Sokoban complet en C — manipulation de tableaux 2D, structures, gestion de la mémoire et fonctions modulaires.</div>
+      <div class="comp-mini-tags">
+        <span class="mini-badge">C</span>
+        <span class="mini-badge">Git</span>
+        <span class="mini-badge">GitHub</span>
+        <span class="mini-badge">SAÉ 1.01</span>
+      </div>
+      <div class="comp-mini-footer">
+        <span class="comp-mini-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Voir sur GitHub
+        </span>
+        <span class="comp-mini-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="competences.html#c2" class="comp-mini" data-cat="algo">
+      <div class="comp-mini-header">
+        <div class="comp-num">C2</div>
+        <div class="comp-mini-title">Optimiser des applications informatiques</div>
+      </div>
+      <div class="comp-mini-sub">Algorithmique & complexité</div>
+      <div class="comp-mini-desc">Parcours du cavalier en Python — théorie des graphes, backtracking et analyse de la complexité temporelle.</div>
+      <div class="comp-mini-tags">
+        <span class="mini-badge">Python</span>
+        <span class="mini-badge">Graphes</span>
+        <span class="mini-badge">BFS/DFS</span>
+        <span class="mini-badge">Backtracking</span>
+      </div>
+      <div class="comp-mini-footer">
+        <span class="comp-mini-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Voir sur GitHub
+        </span>
+        <span class="comp-mini-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="competences.html#c3" class="comp-mini" data-cat="reseau">
+      <div class="comp-mini-header">
+        <div class="comp-num">C3</div>
+        <div class="comp-mini-title">Administrer des systèmes communicants</div>
+      </div>
+      <div class="comp-mini-sub">Réseaux & systèmes</div>
+      <div class="comp-mini-desc">Configuration de réseaux LAN/WAN avec Cisco Packet Tracer — analyse de trames ARP, ICMP, TCP à chaque couche OSI.</div>
+      <div class="comp-mini-tags">
+        <span class="mini-badge">TCP/IP</span>
+        <span class="mini-badge">Packet Tracer</span>
+        <span class="mini-badge">Routeurs</span>
+        <span class="mini-badge">DNS/DHCP</span>
+      </div>
+      <div class="comp-mini-footer">
+        <span class="comp-mini-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Voir sur GitHub
+        </span>
+        <span class="comp-mini-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="competences.html#c4" class="comp-mini" data-cat="data">
+      <div class="comp-mini-header">
+        <div class="comp-num">C4</div>
+        <div class="comp-mini-title">Gérer des données de l'information</div>
+      </div>
+      <div class="comp-mini-sub">Bases de données & SQL</div>
+      <div class="comp-mini-desc">Conception de bases relationnelles avec PostgreSQL — modélisation entité-association, normalisation et requêtes SQL avancées.</div>
+      <div class="comp-mini-tags">
+        <span class="mini-badge">PostgreSQL</span>
+        <span class="mini-badge">SQL</span>
+        <span class="mini-badge">JOIN</span>
+        <span class="mini-badge">Modélisation</span>
+      </div>
+      <div class="comp-mini-footer">
+        <span class="comp-mini-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Voir sur GitHub
+        </span>
+        <span class="comp-mini-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="competences.html#c5" class="comp-mini" data-cat="projet">
+      <div class="comp-mini-header">
+        <div class="comp-num">C5</div>
+        <div class="comp-mini-title">Conduire un projet</div>
+      </div>
+      <div class="comp-mini-sub">Gestion de projet & méthodes agiles</div>
+      <div class="comp-mini-desc">Planification de projets en équipe — diagramme de Gantt, cahier des charges, comptes-rendus et respect des jalons.</div>
+      <div class="comp-mini-tags">
+        <span class="mini-badge">Gantt</span>
+        <span class="mini-badge">SAÉ 1.05</span>
+        <span class="mini-badge">Agile</span>
+        <span class="mini-badge">Documentation</span>
+      </div>
+      <div class="comp-mini-footer">
+        <span class="comp-mini-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Voir sur GitHub
+        </span>
+        <span class="comp-mini-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="competences.html#c6" class="comp-mini" data-cat="collab">
+      <div class="comp-mini-header">
+        <div class="comp-num">C6</div>
+        <div class="comp-mini-title">Collaborer au sein d'une équipe</div>
+      </div>
+      <div class="comp-mini-sub">Travail en équipe & communication</div>
+      <div class="comp-mini-desc">Collaboration Git en équipe — gestion de branches, résolution de conflits, pull requests et présentations orales en SAÉ.</div>
+      <div class="comp-mini-tags">
+        <span class="mini-badge">Git</span>
+        <span class="mini-badge">GitHub</span>
+        <span class="mini-badge">Pull Requests</span>
+        <span class="mini-badge">Oral</span>
+      </div>
+      <div class="comp-mini-footer">
+        <span class="comp-mini-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Voir sur GitHub
+        </span>
+        <span class="comp-mini-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- CTA vers page complète -->
+  <a href="competences.html" class="comp-teaser-cta">
+    <div class="comp-teaser-text">
+      <h4>Détails complets des 6 compétences</h4>
+      <p>Preuves, réflexions, GitHub links & traces par compétence →</p>
+    </div>
+    <span class="comp-teaser-arrow">→</span>
+  </a>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <h2>Contact</h2>
+  <h3>Me retrouver</h3>
+  <br>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="contact-label">Email</span>
+      <a href="mailto:touilaabdelkarim@gmail.com" class="contact-val">touilaabdelkarim@gmail.com</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Téléphone</span>
+      <a href="tel:+33695873679" class="contact-val">+33695873679</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">LinkedIn</span>
+      <a href="https://www.linkedin.com/in/x-karim-x-3469b4309/" target="_blank" class="contact-val">linkedin.com/in/abdelkarim-touila</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">CV (PDF)</span>
+      <a href="CV_Touila_Abdelkarim.pdf" download class="contact-val">Télécharger mon CV ↓</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Touila Abdelkarim — BUT Informatique — IUT de Lannion
+</footer>
+
+<script>
+  // --- Scroll reveal ---
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // --- Animated counters ---
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    let current = 0;
+    const duration = 900;
+    const steps = 30;
+    const interval = duration / steps;
+    const inc = target / steps;
+    const timer = setInterval(() => {
+      current = Math.min(current + inc, target);
+      el.textContent = Math.round(current);
+      if (current >= target) clearInterval(timer);
+    }, interval);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+  // --- Filter bar ---
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const compMinis = document.querySelectorAll('.comp-mini');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      compMinis.forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+          card.style.animation = 'none';
+          card.offsetHeight; // reflow
+          card.style.animation = 'fadeIn 0.25s ease forwards';
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+</style>
+</body>
+</html>
